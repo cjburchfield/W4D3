@@ -1,9 +1,15 @@
+require 'colorize'
 class Piece
+  attr_reader :color
+  def initialize(color, board, pos = [])
+    @color = color
+    @board = board
+    @pos = pos
+    self.place_piece
+  end
 
-  def initialize(color, board, pos)
-    @color = symbol
-    @board = Board.new
-    @pos = []
+  def place_piece
+    @board[@pos] = self
   end
 
   def to_s
@@ -21,8 +27,15 @@ class Piece
     @pos = val
   end
 
-  def Symbol
+  def symbol
     @color
+  end
+
+  # def to_s
+  #   symbol.ciki
+
+  def inspect
+    symbol
   end
 
   private

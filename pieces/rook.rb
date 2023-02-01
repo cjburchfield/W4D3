@@ -8,6 +8,10 @@ class Rook < Piece
     '♜'.colorize(color)
   end
 
+  def to_s
+    symbol
+  end
+
   protected
 
   def move_dirs

@@ -1,6 +1,5 @@
-require_relative '../pieces/Piece.rb'
-require_relative '../pieces/NullPiece.rb'
-require_relative '../pieces/rook.rb'
+Dir['../pieces/*.rb'].each { |file| require file }
+
 class Board
     attr_accessor :rows
     
@@ -23,22 +22,21 @@ class Board
     
     def populate_starting_board
         Rook.new('white', self, [0,0])
-        # Knight.new(white, self, [0,1])
-        # Bishop.new(white, self, [0,2])
-        # King.new(white, self, [0,3])
-        # Queen.new(white, self, [0,4])
-        # Bishop.new(white, self, [0,5])
-        # Knight.new(white, self, [0,6])
-        # Rook.new(white, self, [0,7])
-        
-        # Rook.new(black, self, [7,0])
-        # Knight.new(black, self, [7,1])
-        # Bishop.new(black, self, [7,2])
-        # Queen.new(black, self, [7,3])
-        # King.new(black, self, [7,4])
-        # Bishop.new(black, self, [7,5])
-        # Knight.new(black, self, [7,6])
-        # Rook.new(black, self, [7,7])
+        Knight.new('white', self, [0,1])
+        Bishop.new('white', self, [0,2])
+        King.new('white', self, [0,3])
+        Queen.new('white', self, [0,4])
+        Bishop.new('white', self, [0,5])
+        Knight.new('white', self, [0,6])
+        Rook.new('white', self, [0,7])
+        Rook.new('black', self, [7,0])
+        Knight.new('black', self, [7,1])
+        Bishop.new('black', self, [7,2])
+        Queen.new('black', self, [7,3])
+        King.new('black', self, [7,4])
+        Bishop.new('black', self, [7,5])
+        Knight.new('black', self, [7,6])
+        Rook.new('black', self, [7,7])
     end
     
     
@@ -91,7 +89,9 @@ class Board
 end
 
 b = Board.new
-p b.populate_starting_board
+b.populate_starting_board
+p b
+
 
 
 
