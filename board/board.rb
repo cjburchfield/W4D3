@@ -11,16 +11,28 @@ class Board
         # 0] {|ele| ele = Piece.new(:P)}
     end
     
-    def populate_board
-        i = 0
-        until i == 8
-            white = [0, i]
-            black = [7, i]
-            self[white] = :P
-            self[black] = :P
-            i += 1
-        end
+    # def populate_board
+    #     i = 0
+    #     until i == 8
+    #         white = [0, i]
+    #         black = [7, i]
+    #         self[white] = :P
+    #         self[black] = :P
+    #         i += 1
+    #     end
+    # end
+
+    def populate_starting_board
+        Rook.new(white, self, [0,0])
+        Knight.new(white, self, [0,1])
+        Bishop.new(white, self, [0,2])
+        
+        Bishop.new(white, self, [0,5])
+        Knight.new(white, self, [0,6])
+        Rook.new(white, self, [0,7])
+
     end
+
     
     def [](pos)
         row, col = pos
