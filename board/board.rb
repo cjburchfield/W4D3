@@ -1,12 +1,11 @@
 require_relative '../pieces/Piece.rb'
 require_relative '../pieces/NullPiece.rb'
-
+require_relative '../pieces/rook.rb'
 class Board
     attr_accessor :rows
     
     def initialize
         @rows = Array.new(8) { Array.new(8, nil) }
-        populate_board
         
         # 0] {|ele| ele = Piece.new(:P)}
     end
@@ -21,18 +20,27 @@ class Board
     #         i += 1
     #     end
     # end
-
+    
     def populate_starting_board
-        Rook.new(white, self, [0,0])
-        Knight.new(white, self, [0,1])
-        Bishop.new(white, self, [0,2])
+        Rook.new('white', self, [0,0])
+        # Knight.new(white, self, [0,1])
+        # Bishop.new(white, self, [0,2])
+        # King.new(white, self, [0,3])
+        # Queen.new(white, self, [0,4])
+        # Bishop.new(white, self, [0,5])
+        # Knight.new(white, self, [0,6])
+        # Rook.new(white, self, [0,7])
         
-        Bishop.new(white, self, [0,5])
-        Knight.new(white, self, [0,6])
-        Rook.new(white, self, [0,7])
-
+        # Rook.new(black, self, [7,0])
+        # Knight.new(black, self, [7,1])
+        # Bishop.new(black, self, [7,2])
+        # Queen.new(black, self, [7,3])
+        # King.new(black, self, [7,4])
+        # Bishop.new(black, self, [7,5])
+        # Knight.new(black, self, [7,6])
+        # Rook.new(black, self, [7,7])
     end
-
+    
     
     def [](pos)
         row, col = pos
@@ -47,7 +55,7 @@ class Board
     def move_piece(start_pos, end_pos)
         raise 'no piece there' if start_pos.nil?
         raise 'invalid move' if !valid_pos?(end_pos)
-
+        
         self[start_pos], self[end_pos] = nil, :P
         
     end
@@ -83,10 +91,7 @@ class Board
 end
 
 b = Board.new
-s = [0,0]
-e = [1,1]
-b.move_piece(s, e)
-p b
+p b.populate_starting_board
 
 
 
