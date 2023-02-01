@@ -4,7 +4,7 @@ class Board
     attr_accessor :rows
     
     def initialize
-        @rows = Array.new(8) { Array.new(8, nil) }
+        @rows = Array.new(8) { Array.new(8, NullPiece.new) }
         
         # 0] {|ele| ele = Piece.new(:P)}
     end
@@ -19,6 +19,12 @@ class Board
     #         i += 1
     #     end
     # end
+
+    def print
+        @rows.each do |row|
+            puts row.join(' ')
+        end
+    end
     
     def populate_starting_board
         Rook.new('white', self, [0,0])
@@ -37,6 +43,15 @@ class Board
         Bishop.new('black', self, [7,5])
         Knight.new('black', self, [7,6])
         Rook.new('black', self, [7,7])
+
+        i = 0
+        until i == 8
+            Pawn.new('black', self, [1,i])
+            Pawn.new('white', self, [6,i])
+            i += 1
+        end
+
+        print
     end
     
     
@@ -54,8 +69,7 @@ class Board
         raise 'no piece there' if start_pos.nil?
         raise 'invalid move' if !valid_pos?(end_pos)
         
-        self[start_pos], self[end_pos] = nil, :P
-        
+        # self[start_pos], self[end_pos] = nil, :P
     end
     
     def valid_pos?(pos)
@@ -90,7 +104,6 @@ end
 
 b = Board.new
 b.populate_starting_board
-p b
 
 
 

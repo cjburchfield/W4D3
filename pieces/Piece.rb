@@ -12,10 +12,6 @@ class Piece
     @board[@pos] = self
   end
 
-  def to_s
-    @color
-  end
-
   def empty?
     @board.pos == nil
   end
@@ -31,8 +27,9 @@ class Piece
     @color
   end
 
-  # def to_s
-  #   symbol.ciki
+  def to_s
+     symbol.colorize(color)
+  end
 
   def inspect
     symbol
